@@ -1,5 +1,5 @@
 {
-  "name": "@tsmonorepo/cli",
+  "name": "@cieleye/cli",
   "version": "0.0.0",
   "description": "<TODO>",
   "author": {
@@ -26,7 +26,7 @@
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "bin": {
-    "placeholder-cli": "./bin/cli.mjs"
+    "cieleye": "./bin/index.mjs"
   },
   "files": [
     "bin",
