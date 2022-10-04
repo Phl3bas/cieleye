@@ -33,6 +33,7 @@
     "@vitest/ui": "^0.23.4",
     "brotli-size": "^4.0.0",
     "bumpp": "^8.2.1",
+    "cieleye": "workspace:*",
     "eslint": "8.23.1",
     "esno": "^0.16.3",
     "execa": "^6.1.0",
@@ -54,8 +55,8 @@
     "unbuild": "^0.8.11",
     "unplugin-auto-import": "^0.11.2",
     "vite": "^3.1.2",
-    "vitest": "^0.23.4",
-    "cieleye" : "workspace:*"
+    "vitest": "^0.23.4"
+
   },
   "simple-git-hooks": {
     "pre-commit": "npx lint-staged"
