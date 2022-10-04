@@ -32,6 +32,10 @@
     "build": "unbuild",
     "stub": "unbuild --stub"
   },
+  "dependencies": {
+    "@cieleye/shared" : "workspace:*"
+  },
+ 
   "devDependencies": {
     "magic-string": "^0.26.3",
     "unconfig": "^0.3.6"
