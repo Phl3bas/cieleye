@@ -1,12 +1,12 @@
 {
-  "name": "ts-monorepo-template",
+  "name": "cieleye",
   "type": "module",
   "version": "0.0.0",
   "private": true,
   "packageManager": "pnpm@7.11.0",
   "scripts": {
     "bench": "npm -C bench run bench",
-    "build": "rimraf packages/*/dist && esno scripts/copy-files.ts && pnpm -r --filter=./packages/* run build && pnpm -r run build-post",
+    "build": "rimraf packages/*/dist && pnpm -r --filter=./packages/* run build && pnpm -r run build-post",
     "dev": "nr stub",
     "lint": "eslint .",
     "lint:fix": "nr lint --fix",
