@@ -41,6 +41,9 @@ importers:
       unplugin-auto-import: ^0.11.2
       vite: ^3.1.2
       vitest: ^0.23.4
+      yewtils: ^0.1.1
+    dependencies:
+      yewtils: 0.1.1
     devDependencies:
       '@antfu/eslint-config': 0.26.3_abkyjrvwkq25uefwggm6hc3u2a
       '@antfu/ni': 0.18.2
@@ -5056,6 +5059,10 @@ packages:
       y18n: 5.0.8
       yargs-parser: 21.1.1
     dev: true
+
+  /yewtils/0.1.1:
+    resolution: {integrity: sha512-2LL+A14/9kt/MwL4VAt2nBhVbNhwV/5qKWf3HuWZcThtpnEDyzZOfYCX9nTXxZRmpia2BRdX6ANP0H6gKYeFdg==}
+    dev: false
 
   /yocto-queue/0.1.0:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}

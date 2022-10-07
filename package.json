@@ -17,7 +17,7 @@
     "test": "vitest",
     "test:update": "vitest -u",
     "test:ci": "nr build && nr typecheck && nr lint && nr test",
-    "example" : "esno watch ./example/index.ts"
+    "example": "esno watch ./example/index.ts"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.26.3",
@@ -57,7 +57,6 @@
     "unplugin-auto-import": "^0.11.2",
     "vite": "^3.1.2",
     "vitest": "^0.23.4"
-
   },
   "simple-git-hooks": {
     "pre-commit": "npx lint-staged"
@@ -66,5 +65,8 @@
     "*.{js,ts,tsx,vue,md}": [
       "eslint --fix"
     ]
+  },
+  "dependencies": {
+    "yewtils": "^0.1.1"
   }
 }
