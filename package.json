@@ -16,7 +16,8 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest",
     "test:update": "vitest -u",
-    "test:ci": "nr build && nr typecheck && nr lint && nr test"
+    "test:ci": "nr build && nr typecheck && nr lint && nr test",
+    "example" : "esno watch ./example/index.ts"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.26.3",

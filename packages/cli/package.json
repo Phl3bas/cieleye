@@ -2,6 +2,7 @@
   "name": "@cieleye/cli",
   "version": "0.0.0",
   "description": "<TODO>",
+  "type": "module",
   "author": {
     "name": "Sepp Wikramratna-Clarke",
     "email": "phl3bas87@gmail.com"
@@ -26,7 +27,7 @@
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "bin": {
-    "cieleye": "./bin/index.mjs"
+    "cieleye": "./bin/cli.mjs"
   },
   "files": [
     "bin",

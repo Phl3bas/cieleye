@@ -4,6 +4,7 @@
   "description": "<TODO>",
   "author": "Sepp Wikramaratna-Clarke <ph3lbas87@gmail.com>",
   "license": "MIT",
+  "type": "module",
   "homepage": "<TODO>",
   "repository": {
     "type": "git",
@@ -32,9 +33,11 @@
     "stub": "unbuild --stub"
   },
   "dependencies": {
-    "@cieleye/shared": "workspace:*"
+    "@cieleye/shared": "workspace:*",
+    "yargs-parser": "^21.1.1"
   },
   "devDependencies": {
+    "@types/yargs-parser": "^21.0.0",
     "magic-string": "^0.26.3",
     "unconfig": "^0.3.6"
   }

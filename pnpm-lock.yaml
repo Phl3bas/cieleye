@@ -107,11 +107,15 @@ importers:
   packages/core:
     specifiers:
       '@cieleye/shared': workspace:*
+      '@types/yargs-parser': ^21.0.0
       magic-string: ^0.26.3
       unconfig: ^0.3.6
+      yargs-parser: ^21.1.1
     dependencies:
       '@cieleye/shared': link:../shared
+      yargs-parser: 21.1.1
     devDependencies:
+      '@types/yargs-parser': 21.0.0
       magic-string: 0.26.5
       unconfig: 0.3.6
 
@@ -835,6 +839,10 @@ packages:
     resolution: {integrity: sha512-6YOoWjruKj1uLf3INHH7D3qTXwFfEsg1kf3c0uDdSBJwfa/llkwIjrAGV7j7mVgGNbzTQ3HiHKKDXl6bJPD97w==}
     dependencies:
       '@types/node': 18.8.1
+    dev: true
+
+  /@types/yargs-parser/21.0.0:
+    resolution: {integrity: sha512-iO9ZQHkZxHn4mSakYV0vFHAVDyEOIJQrV2uZ06HxEPcx+mt8swXoZHIbaaJ2crJYFfErySgktuTZ3BeLz+XmFA==}
     dev: true
 
   /@typescript-eslint/eslint-plugin/5.39.0_gcdtdnlvb2xaf2gbc4sv3qrici:
@@ -5035,7 +5043,6 @@ packages:
   /yargs-parser/21.1.1:
     resolution: {integrity: sha512-tVpsJW7DdjecAiFpbIB1e3qxIQsE6NoPc5/eTdrbbIC4h0LVsWhnoa3g+m2HclBIujHzsxZ4VJVA+GUuc2/LBw==}
     engines: {node: '>=12'}
-    dev: true
 
   /yargs/17.6.0:
     resolution: {integrity: sha512-8H/wTDqlSwoSnScvV2N/JHfLWOKuh5MVla9hqLjK3nsfyy6Y4kDSYSvkU5YCUEPOSnRXfIyx3Sq+B/IWudTo4g==}
