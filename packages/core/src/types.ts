@@ -1,16 +1,18 @@
-interface CommandOptions<F, S> {
+import type { Answers, QuestionCollection } from 'inquirer'
+
+interface CommandOptions<F, S, P> {
   name: string
   flags?: F
   subcommands?: S
-  prompt?: Record<string, any>
-  action: (args: Record<keyof F, FlagType<F[keyof F]>>) => any
+  prompt?: P & Prompt<any>
+  action: (args: { flags: Record<keyof F, FlagType<F[keyof F]>>; answers: Answers }) => any
   before?: () => any
   after?: () => any
 }
 
 type FlagType<T> = T extends Flag<infer I> ? I : never
 
-export type Command<F = any, S = any> = CommandOptions<F, S> & ThisType<{ help: () => void }>
+export type Command<F = any, S = any, P = any> = CommandOptions<F, S, P> & ThisType<{ help: () => void }>
 
 interface FlagBase<T = boolean> {
   name: string
@@ -26,4 +28,6 @@ export type Flag<T> = FlagBase<T> & {
   required: false
   default: T
 }
+
+export type Prompt<T extends Answers> = QuestionCollection<T>
 

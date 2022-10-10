@@ -1,7 +1,7 @@
 import type yargs from 'yargs-parser'
 import type { Command, Flag } from './types'
 
-export function mapDefaultFlagValues<F>(command: Command<F, any>) {
+export function mapDefaultFlagValues<F, S, P>(command: Command<F, S, P>) {
   return command.flags
     ? Object.entries(command?.flags).reduce((acc, [key, value]: [string, any]) => {
       acc[key] = value?.default ?? false
@@ -11,7 +11,7 @@ export function mapDefaultFlagValues<F>(command: Command<F, any>) {
     : {}
 }
 
-export function validateFlags<F, S>(args: yargs.Arguments, command: Command<F, S>) {
+export function validateFlags<F, S, P>(args: yargs.Arguments, command: Command<F, S, P>) {
   const defaultFlagValueMap = mapDefaultFlagValues(command)
 
   return Object.entries(args).filter(([key]) => key !== '_' && key !== '__').reduce((acc, [key, value]) => {

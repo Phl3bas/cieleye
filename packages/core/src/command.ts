@@ -1,11 +1,11 @@
 import type { Command } from './types'
 
-export function selectCommand<F, S>(selectedCommands: (string | number)[], root: Command<F, S>): Command<F, S> {
+export function selectCommand<F, S, P>(selectedCommands: (string | number)[], root: Command<F, S, P>): Command<F, S, P> {
   const command = selectedCommands.reduce((acc, cur) => {
     if (!acc.subcommands)
       return acc
 
-    const a = acc.subcommands[cur as keyof S] as Command<F, S>
+    const a = acc.subcommands[cur as keyof S] as Command<F, S, P>
 
     if (a)
       acc = a
@@ -25,7 +25,7 @@ function mapTo<T extends Record<string, any>>(obj: T, toMapTo: string[]) {
   }, {} as T)
 }
 
-export function defineCommand<F = any, S = any>(command: Command<F, S>): Command<F, S> {
+export function defineCommand<F = any, S = any, P = any>(command: Command<F, S, P>): Command<F, S, P> {
   if (command?.flags)
     command.flags = mapTo(command.flags, ['name', 'alias'])
 
