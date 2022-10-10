@@ -17,7 +17,12 @@
     "test": "vitest",
     "test:update": "vitest -u",
     "test:ci": "nr build && nr typecheck && nr lint && nr test",
-    "example": "esno watch ./example/index.ts"
+    "example": "esno ./example/index.ts"
+  },
+  "dependencies": {
+    "@types/inquirer": "^9.0.2",
+    "inquirer": "^9.1.3",
+    "yewtils": "^0.1.1"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.26.3",
@@ -65,8 +70,5 @@
     "*.{js,ts,tsx,vue,md}": [
       "eslint --fix"
     ]
-  },
-  "dependencies": {
-    "yewtils": "^0.1.1"
   }
 }

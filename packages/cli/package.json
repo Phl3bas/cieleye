@@ -1,8 +1,8 @@
 {
   "name": "@cieleye/cli",
+  "type": "module",
   "version": "0.0.0",
   "description": "<TODO>",
-  "type": "module",
   "author": {
     "name": "Sepp Wikramratna-Clarke",
     "email": "phl3bas87@gmail.com"

@@ -1,18 +1,25 @@
 import yargs from 'yargs-parser'
+import inquirer from 'inquirer'
 import type { Command } from './types'
 import { selectCommand } from './command'
 import { validateFlags } from './flag'
 import { ctx } from './context'
 
-export async function runCLI<F, S>(rootCommand: Command<F, S>, args = yargs(process.argv)) {
-  const command = selectCommand<F, S>(args._.slice(2), rootCommand)
+const promptModule = inquirer.createPromptModule()
+
+export async function runCLI<F, S, P>(rootCommand: Command<F, S, P>, args = yargs(process.argv)) {
+  const command = selectCommand<F, S, P>(args._.slice(2), rootCommand)
 
   const flags = validateFlags(args, command)
+  let answers
 
   try {
     await command.before?.()
-    // command.prompt?.()
-    await command.action.call(ctx, flags as any)
+
+    if (command.prompt)
+      answers = await promptModule(command?.prompt)
+
+    await command.action.call(ctx, { flags, answers } as any)
     await command.after?.()
   }
   catch (err) {
