@@ -20,8 +20,6 @@
     "example": "esno ./example/index.ts"
   },
   "dependencies": {
-    "@types/inquirer": "^9.0.2",
-    "inquirer": "^9.1.3",
     "yewtils": "^0.1.1"
   },
   "devDependencies": {
