@@ -10,7 +10,7 @@ const promptModule = inquirer.createPromptModule()
 export async function runCLI<F, S, P>(rootCommand: Command<F, S, P>, args = yargs(process.argv)) {
   const command = selectCommand<F, S, P>(args._.slice(2), rootCommand)
 
-  const flags = validateFlags(args, command)
+  const flags = validateFlags(args, command as any)
   let answers
 
   try {
