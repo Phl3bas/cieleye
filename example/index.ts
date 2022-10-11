@@ -1,14 +1,17 @@
-import { defineCommand, runCLI } from 'cieleye'
+import { defineCommand, defineFlag, runCLI } from 'cieleye'
+
+const test = defineFlag({
+  name: 'test',
+  alias: 't',
+  description: 'this is a description',
+  required: false,
+  default: './hi',
+
+})
 
 const root = defineCommand({
   name: 'root',
-  flags: {
-    test: {
-      name: 'test',
-      alias: 't',
-      default: './',
-    },
-  },
+  flags: { test },
   action({ flags, answers }) {
     console.log({ flags, answers })
   },
