@@ -18,6 +18,7 @@ interface FlagBase<T = boolean> {
   name: string
   alias: string
   description: string
+  type?: StringConstructor | BooleanConstructor
   validate?: (value: T) => boolean
 }
 
