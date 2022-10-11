@@ -5,9 +5,23 @@ import { selectCommand } from './command'
 import { validateFlags } from './flag'
 import { ctx } from './context'
 
-const promptModule = inquirer.createPromptModule()
+interface RunCLIOptions {
+  inquirer?: {
+    plugins?: [string, inquirer.prompts.PromptConstructor][]
+  }
+}
 
-export async function runCLI<F, S, P>(rootCommand: Command<F, S, P>, args = yargs(process.argv)) {
+export async function runCLI<F, S, P>(rootCommand: Command<F, S, P>, options: RunCLIOptions = { }) {
+  const args = yargs(process.argv)
+
+  const promptModule = inquirer.createPromptModule()
+
+  if (options.inquirer?.plugins?.length) {
+    options.inquirer?.plugins.forEach(([key, prompt]) => {
+      promptModule.registerPrompt(key, prompt)
+    })
+  }
+
   const command = selectCommand<F, S, P>(args._.slice(2), rootCommand)
 
   const flags = validateFlags(args, command as any)
