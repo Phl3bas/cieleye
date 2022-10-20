@@ -1,4 +1,6 @@
 import type yargs from 'yargs-parser'
+import hash from 'object-hash'
+import { FlagValidationError } from './errors'
 
 import type { Command, Flag } from './types'
 
@@ -19,27 +21,24 @@ export function validateFlags(args: yargs.Arguments, command: Command) {
     return
 
   for (const flag of Object.values(command.flags)) {
+    if (!Object.keys(args).includes(flag.name) && !Object.keys(args).includes(flag.alias))
+      throw new FlagValidationError({ name: Object.keys(args).slice(1).toString(), alias: Object.keys(args).slice(1).toString() } as Flag<any>, 'not valid flag')
+
     let value = args[flag.name] || args[flag.alias]
 
     if (flag?.required) {
-      if (!value) {
-        console.error('no flag passed when required')
-        process.exit(1)
-      }
+      if (!value)
+        throw new FlagValidationError(flag, 'an argument is required for this flag')
     }
 
     if (value === undefined && Object.hasOwn(flag, 'default'))
       value = flag.default
 
-    if (Object.hasOwn(flag, 'type') && !(typeof value === typeof flag?.type?.())) {
-      console.log('flag passed did not pass validation: Type Assertion')
-      process.exit(1)
-    }
+    if (Object.hasOwn(flag, 'type') && !(typeof value === typeof flag?.type?.()))
+      throw new FlagValidationError(flag, `invalid value type passed expected ${flag.type?.name} but receieved ${typeof value}`)
 
-    if (Object.hasOwn(flag, 'validate') && !flag?.validate?.(value)) {
-      console.log('flag passed did not pass validation: Validate Function')
-      process.exit(1)
-    }
+    if (Object.hasOwn(flag, 'validate') && !flag?.validate?.(value))
+      throw new FlagValidationError(flag, `value ${value} did not pass validation`)
 
     flagValues[flag.name] = value
     flagValues[flag.alias] = value
@@ -49,6 +48,13 @@ export function validateFlags(args: yargs.Arguments, command: Command) {
 }
 
 export function defineFlag<T>(flag: Flag<T>): Flag<T> {
+  const ID = hash(flag)
+
+  Object.defineProperty(flag, 'ID', {
+    enumerable: false,
+    value: ID,
+  })
+
   return flag
 }
 

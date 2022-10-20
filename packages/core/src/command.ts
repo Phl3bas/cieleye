@@ -1,9 +1,12 @@
+import hash from 'object-hash'
+
+import { CommandError } from './errors'
 import type { Command, Flag, Prompt } from './types'
 
 export function selectCommand<F, S, P>(selectedCommands: (string | number)[], root: Command<F, S, P>): Command<F, S, P> {
   const command = selectedCommands.reduce((acc, cur) => {
     if (!acc.subcommands)
-      return acc
+      throw new CommandError(cur)
 
     const a = acc.subcommands[cur as keyof S] as Command<F, S, P>
 
@@ -31,6 +34,13 @@ export function defineCommand<F = Record<string, Flag<unknown>>, S = Record<stri
 
   if (command?.subcommands)
     command.subcommands = mapTo(command.subcommands, ['name'])
+
+  const ID = hash(command)
+
+  Object.defineProperty(command, 'ID', {
+    enumerable: false,
+    value: ID,
+  })
 
   return command
 }

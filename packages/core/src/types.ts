@@ -2,6 +2,8 @@ import type { Answers, QuestionCollection } from 'inquirer'
 
 interface CommandOptions<F = Record<string, Flag<unknown>>, S = Record<string, Command>, P = Prompt<any>> {
   name: string
+  description: string
+  useage?: string[]
   flags?: F
   subcommands?: S
   prompt?: P
@@ -18,6 +20,7 @@ interface FlagBase<T = boolean> {
   name: string
   alias: string
   description: string
+  useage?: string[]
   type?: StringConstructor | BooleanConstructor
   validate?: (value: T) => boolean
 }
